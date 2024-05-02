@@ -19,7 +19,7 @@ namespace ariel {
 
     //helper method
     void Algorithms::dfs(const Graph& graph, int node, vector<bool>& visited) {
-        const auto& adjacencyMatrix = graph.getAdjacencyMatrix(); // Access adjacency matrix using new function
+        const auto& adjacencyMatrix = graph.getAdjacencyMatrix(); 
         visited[node] = true;
         for (int i = 0; i < graph.size(); ++i) {
             if (adjacencyMatrix[node][i] && !visited[i]) {
@@ -41,8 +41,9 @@ namespace ariel {
     }
 
     string Algorithms::shortestPath(const Graph& graph, int start, int end) {
+        //using dijkstra algorithm
         const auto& adjacencyMatrix = graph.getAdjacencyMatrix();
-        int n = adjacencyMatrix.size(); // Number of vertices
+        int n = adjacencyMatrix.size(); 
 
         std::vector<int> dist(n, std::numeric_limits<int>::max());
         std::vector<int> pred(n, -1);
@@ -56,7 +57,7 @@ namespace ariel {
             pq.pop();
 
             if (u == end) break;
-
+            //relaxation
             for (int v = 0; v < n; ++v) {
                 if (adjacencyMatrix[u][v] != 0) { 
                     int weight = adjacencyMatrix[u][v];
@@ -68,7 +69,7 @@ namespace ariel {
                 }
             }
         }
-
+        //no shortest path
         if (dist[end] == std::numeric_limits<int>::max()) {
             return "-1"; 
         }
@@ -120,6 +121,7 @@ namespace ariel {
 
 
 string Algorithms::isContainsCycle(const Graph& graph) {
+        
         int n = graph.size();
         std::vector<bool> visited(n, false);
         std::vector<int> parent(n, -1);
@@ -131,7 +133,7 @@ string Algorithms::isContainsCycle(const Graph& graph) {
                     for (const auto& cycle : cycles) {
                         std::string result = "The cycle is: ";
                         for (size_t j = 0; j < cycle.size(); ++j) {
-                            if (j > 0) result += "->"; // Add arrows between nodes
+                            if (j > 0) result += "->"; 
                             result += std::to_string(cycle[j]);
                         }
                         return result; 
@@ -147,6 +149,7 @@ string Algorithms::isContainsCycle(const Graph& graph) {
 
 
     string Algorithms::isBipartite(const Graph& graph) {
+        //trying to color the graph with 2 colors using BFS
         int n = graph.size(); 
         std::vector<int> color(n, -1); 
         std::queue<int> q; 
@@ -198,6 +201,7 @@ string Algorithms::isContainsCycle(const Graph& graph) {
     }
 
     string Algorithms::negativeCycle(const Graph& graph) {
+        //using Bellman-Ford algorithm
         int n = graph.size();
         const auto& adjacencyMatrix = graph.getAdjacencyMatrix();
         std::vector<int> distance(n, std::numeric_limits<int>::max());
