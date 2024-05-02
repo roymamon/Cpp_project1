@@ -18,6 +18,7 @@ namespace ariel {
         static std::string isBipartite(const Graph& graph);
         static std::string negativeCycle(const Graph& graph);
     private:
+    //helper methods:
         static void dfs(const Graph& graph, int node, std::vector<bool>& visited);  
         static bool hasCycleDFS(const Graph& graph, int node, std::vector<bool>& visited, std::vector<int>& parent, std::vector<std::vector<int>>& cycles);
 
