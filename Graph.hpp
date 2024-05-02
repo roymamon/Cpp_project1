@@ -18,10 +18,11 @@ namespace ariel {
         void loadGraph(const std::vector<std::vector<int>>& adjacencyMatrix);
         void printGraph() const;
         int size() const;
-        const std::vector<std::vector<int>>& getAdjacencyMatrix() const; // New function declaration
+        const std::vector<std::vector<int>>& getAdjacencyMatrix() const; 
 
 
     private:
+    //helper method
         std::vector<std::vector<int>> adjacencyMatrix;
     };
 
